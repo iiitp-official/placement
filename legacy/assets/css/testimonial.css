@@ -1,0 +1,65 @@
+.special-heading.line span:before,
+.special-heading.line span:after,
+.footer.footer-minimal,
+.t-bordered {
+    border-top-color: #eaeaea;
+}
+.t-bordered {
+    border-top: 1px solid #eaeaea;
+}
+.section-primary {
+    padding: 75px 0px;
+}
+section {
+    position: relative;
+}
+
+.testimonial-three .testimonial-content {
+    overflow: hidden;
+}
+
+.testimonial-three .testimonial-meta {
+    position: relative;
+    overflow: hidden;
+    /* margin-left: 20px; */
+}
+
+.testimonial-three .testimonial-name {
+    display: block;
+}
+
+.testimonial-three .testimonial-three-col {
+    padding-bottom: 35px;
+}
+
+.testimonial-three .testimonial-three-col {
+    border-right-style: dashed;
+    border-right-width: 1px;
+    border-bottom-style: dashed;
+    border-bottom-width: 1px;
+    border-right-color: #ddd;
+    border-bottom-color: #ddd;
+    padding: 25px;
+    transition: all 0.1s ease-in-out;
+}
+
+.testimonial-three.testimonial-three--col-three
+    .testimonial-three-col:nth-child(3n) {
+    border-right: none;
+}
+
+.testimonial-three.testimonial-three--col-three
+    .testimonial-three-col:nth-last-child(-n + 3),
+.testimonial-three.testimonial-three--col-three
+    .testimonial-three-col:nth-last-child(-n + 2),
+.testimonial-three.testimonial-three--col-three
+    .testimonial-three-col:last-child {
+    border-bottom: none;
+}
+
+.testimonial-three-col:hover {
+    background: rgba(0, 0, 0, 0.05);
+}
+.testimonial-inner {
+    height: 100%;
+}
