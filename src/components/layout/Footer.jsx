@@ -14,7 +14,7 @@ const socialLinks = [
   ["X / Twitter", "https://x.com/IIIT_Pune", TwitterIcon],
   ["LinkedIn", "https://www.linkedin.com/company/cdcrciiitp/", LinkedinIcon],
   ["Instagram", "https://www.instagram.com/iiit_pune_official/", InstagramIcon],
-  ["YouTube", "https://youtube.com/@iiitpune25", YoutubeIcon],
+  ["YouTube", "https://www.youtube.com/@IIIT_Pune_Official", YoutubeIcon],
 ];
 const footerLinks = [
   ["Home", "/"],
