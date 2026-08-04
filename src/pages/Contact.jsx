@@ -1,4 +1,5 @@
 import React from 'react';
+import PageHeader from '../components/shared/PageHeader';
 
 const ContactCard = ({ title, name, role, phone, email, type }) => {
   const getBgColor = () => {
@@ -34,14 +35,8 @@ const ContactCard = ({ title, name, role, phone, email, type }) => {
 
 const Contact = () => {
   return (
-    <main className="bg-bg min-h-screen py-12">
+    <main className="min-h-screen"><PageHeader title="CDCRC Committee" subtitle="Career Development And Corporate Relation Centre" /><div className="bg-bg bg-grid-pattern min-h-screen py-12">
       <div className="container mx-auto px-4 max-w-4xl">
-        
-        <div className="text-center mb-12">
-          <h1 className="text-4xl font-bold font-serif text-primary mb-4">CDCRC Committee</h1>
-          <div className="w-24 h-1.5 bg-gradient-to-r from-brand-red via-accent to-primary mx-auto rounded-full mb-6"></div>
-          <h2 className="text-2xl font-semibold text-text">Career Development And Corporate Relation Centre</h2>
-        </div>
 
         <div className="space-y-8">
           <div className="grid md:grid-cols-2 gap-6">
@@ -77,6 +72,7 @@ const Contact = () => {
           </div>
         </div>
 
+      </div>
       </div>
     </main>
   );

@@ -3,6 +3,7 @@ export default {
   content: [
     "./index.html",
     "./src/**/*.{js,ts,jsx,tsx}",
+    "./src/data/**/*.json"
   ],
   darkMode: 'class',
   theme: {
@@ -34,6 +35,10 @@ export default {
           dark: '#0D1117',    // Dark mode background
         },
         footer: '#0A1628',
+      },
+      fontFamily: {
+        sans: ['Inter', 'sans-serif'],
+        serif: ['Merriweather', 'serif'],
       },
     },
   },

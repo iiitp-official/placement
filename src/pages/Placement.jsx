@@ -1,4 +1,5 @@
 import React from 'react';
+import PageHeader from '../components/shared/PageHeader';
 import {
   Chart as ChartJS,
   CategoryScale,
@@ -121,15 +122,8 @@ const Placement = () => {
   ];
 
   return (
-    <main className="bg-bg min-h-screen py-12">
+    <main className="min-h-screen"><PageHeader title="Placement Statistics" subtitle="Explore our comprehensive placement records over the years, showcasing the success of our students and the trust of our recruiters." /><div className="bg-bg bg-grid-pattern min-h-screen py-12">
       <div className="container mx-auto px-4">
-        
-        <div className="text-center mb-12">
-          <h1 className="text-4xl font-bold font-serif text-primary mb-4">Placement Statistics</h1>
-          <p className="text-text max-w-2xl mx-auto">
-            Explore our comprehensive placement records over the years, showcasing the success of our students and the trust of our recruiters.
-          </p>
-        </div>
 
         {yearsData.map((data, index) => (
           <div key={index} className="bg-white rounded-xl shadow border border-gray-200 p-8 mb-10 hover:shadow-md transition">
@@ -185,6 +179,7 @@ const Placement = () => {
           </div>
         </div>
 
+      </div>
       </div>
     </main>
   );

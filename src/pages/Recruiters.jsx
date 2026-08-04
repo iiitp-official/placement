@@ -1,4 +1,22 @@
 import React, { useState } from 'react';
+import PageHeader from '../components/shared/PageHeader';
+const companyLogoUrls = {
+  Adobe: 'https://cdn.simpleicons.org/adobe/FF0000', Amazon: 'https://cdn.simpleicons.org/amazon/FF9900', Accenture: 'https://cdn.simpleicons.org/accenture/A100FF',
+  Airtel: 'https://cdn.simpleicons.org/airtel/E40000', Autodesk: 'https://cdn.simpleicons.org/autodesk/000000', Capgemini: 'https://cdn.simpleicons.org/capgemini/0070AD',
+  Cognizant: 'https://cdn.simpleicons.org/cognizant/1A4CA1', Deloitte: 'https://cdn.simpleicons.org/deloitte/86BC25', Flipkart: 'https://cdn.simpleicons.org/flipkart/2874F0',
+  Google: 'https://cdn.simpleicons.org/google/4285F4', IBM: 'https://cdn.simpleicons.org/ibm/052FAD', Infosys: 'https://cdn.simpleicons.org/infosys/007CC3',
+  Intel: 'https://cdn.simpleicons.org/intel/0071C5', Microsoft: 'https://cdn.simpleicons.org/microsoft/5E5E5E', NVIDIA: 'https://cdn.simpleicons.org/nvidia/76B900',
+  PayPal: 'https://cdn.simpleicons.org/paypal/003087', Samsung: 'https://cdn.simpleicons.org/samsung/1428A0', Siemens: 'https://cdn.simpleicons.org/siemens/009999',
+  TCS: 'https://cdn.simpleicons.org/tcs/307FE2', Walmart: 'https://cdn.simpleicons.org/walmart/0071CE', Zscaler: 'https://cdn.simpleicons.org/zscaler/009CDE'
+};
+
+function RecruiterLogo({ name }) {
+  const [failed, setFailed] = useState(false);
+  const initials = name.split(/\s+/).filter(Boolean).slice(0, 2).map((word) => word[0]).join('').toUpperCase();
+  return <div className="w-10 h-10 rounded-lg bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-700 flex items-center justify-center shrink-0 overflow-hidden" aria-hidden="true">
+    {companyLogoUrls[name] && !failed ? <img src={companyLogoUrls[name]} alt="" className="max-w-[30px] max-h-[30px] object-contain" onError={() => setFailed(true)} /> : <span className="text-xs font-bold text-primary dark:text-blue-300">{initials}</span>}
+  </div>;
+}
 
 const Recruiters = () => {
   const [searchTerm, setSearchTerm] = useState('');
@@ -40,15 +58,8 @@ const Recruiters = () => {
   );
 
   return (
-    <main className="bg-bg min-h-screen py-12">
+    <main className="min-h-screen"><PageHeader title="Our Esteemed Recruiters" subtitle="Our students are placed across leading global organizations spanning technology, finance, consulting, and core engineering." /><div className="bg-bg bg-grid-pattern min-h-screen py-12">
       <section className="container mx-auto px-4">
-        
-        <div className="text-center mb-10">
-          <h1 className="text-4xl font-bold font-serif text-primary mb-4">Our Esteemed Recruiters</h1>
-          <p className="text-text max-w-2xl mx-auto text-lg">
-            Our students are placed across leading global organizations spanning technology, finance, consulting, and core engineering.
-          </p>
-        </div>
 
         {/* Search */}
         <div className="max-w-xl mx-auto mb-12 relative">
@@ -57,7 +68,7 @@ const Recruiters = () => {
           </div>
           <input
             type="text"
-            className="w-full pl-12 pr-4 py-4 rounded-full border border-gray-300 shadow-sm focus:outline-none focus:ring-2 focus:ring-accent focus:border-transparent transition text-text bg-white text-lg"
+            className="w-full pl-12 pr-4 py-4 rounded-full border border-gray-300 dark:border-gray-700 shadow-sm focus:outline-none focus:ring-2 focus:ring-accent focus:border-transparent transition text-gray-900 dark:text-gray-100 placeholder:text-gray-500 bg-white dark:bg-surface-dark text-lg"
             placeholder="Search recruiter..."
             value={searchTerm}
             onChange={(e) => setSearchTerm(e.target.value)}
@@ -71,9 +82,10 @@ const Recruiters = () => {
               {filteredRecruiters.map((recruiter) => (
                 <div 
                   key={recruiter} 
-                  className="bg-surface border border-gray-200 p-4 rounded-lg text-center text-text font-medium hover:bg-accent hover:border-accent hover:text-white transition-colors duration-300 flex items-center justify-center min-h-[80px] shadow-sm hover:shadow"
+                  className="bg-surface border border-gray-200 p-4 rounded-lg text-text font-medium hover:bg-accent hover:border-accent hover:text-white transition-colors duration-300 flex items-center gap-3 min-h-[80px] shadow-sm hover:shadow"
                 >
-                  {recruiter}
+                  <RecruiterLogo name={recruiter} />
+                  <span className="text-left leading-tight">{recruiter}</span>
                 </div>
               ))}
             </div>
@@ -86,6 +98,7 @@ const Recruiters = () => {
         </div>
 
       </section>
+      </div>
     </main>
   );
 };
