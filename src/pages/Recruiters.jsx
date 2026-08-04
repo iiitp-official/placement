@@ -1,103 +1,229 @@
-import React, { useState } from 'react';
-import PageHeader from '../components/shared/PageHeader';
-const companyLogoUrls = {
-  Adobe: 'https://cdn.simpleicons.org/adobe/FF0000', Amazon: 'https://cdn.simpleicons.org/amazon/FF9900', Accenture: 'https://cdn.simpleicons.org/accenture/A100FF',
-  Airtel: 'https://cdn.simpleicons.org/airtel/E40000', Autodesk: 'https://cdn.simpleicons.org/autodesk/000000', Capgemini: 'https://cdn.simpleicons.org/capgemini/0070AD',
-  Cognizant: 'https://cdn.simpleicons.org/cognizant/1A4CA1', Deloitte: 'https://cdn.simpleicons.org/deloitte/86BC25', Flipkart: 'https://cdn.simpleicons.org/flipkart/2874F0',
-  Google: 'https://cdn.simpleicons.org/google/4285F4', IBM: 'https://cdn.simpleicons.org/ibm/052FAD', Infosys: 'https://cdn.simpleicons.org/infosys/007CC3',
-  Intel: 'https://cdn.simpleicons.org/intel/0071C5', Microsoft: 'https://cdn.simpleicons.org/microsoft/5E5E5E', NVIDIA: 'https://cdn.simpleicons.org/nvidia/76B900',
-  PayPal: 'https://cdn.simpleicons.org/paypal/003087', Samsung: 'https://cdn.simpleicons.org/samsung/1428A0', Siemens: 'https://cdn.simpleicons.org/siemens/009999',
-  TCS: 'https://cdn.simpleicons.org/tcs/307FE2', Walmart: 'https://cdn.simpleicons.org/walmart/0071CE', Zscaler: 'https://cdn.simpleicons.org/zscaler/009CDE'
-};
-
+import React, { useState } from "react";
+import PageHeader from "../components/shared/PageHeader";
+import { CompanyLogo } from "../components/shared/CompanyLogo";
 function RecruiterLogo({ name }) {
-  const [failed, setFailed] = useState(false);
-  const initials = name.split(/\s+/).filter(Boolean).slice(0, 2).map((word) => word[0]).join('').toUpperCase();
-  return <div className="w-10 h-10 rounded-lg bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-700 flex items-center justify-center shrink-0 overflow-hidden" aria-hidden="true">
-    {companyLogoUrls[name] && !failed ? <img src={companyLogoUrls[name]} alt="" className="max-w-[30px] max-h-[30px] object-contain" onError={() => setFailed(true)} /> : <span className="text-xs font-bold text-primary dark:text-blue-300">{initials}</span>}
-  </div>;
+  return (
+    <div className="w-10 h-10 rounded-lg bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-700 flex items-center justify-center shrink-0 overflow-hidden" aria-hidden="true">
+      <CompanyLogo name={name} className="w-full h-full max-h-9 max-w-[34px] object-contain text-gray-800 dark:text-gray-200" />
+    </div>
+  );
 }
-
 const Recruiters = () => {
-  const [searchTerm, setSearchTerm] = useState('');
+  const [searchTerm, setSearchTerm] = useState("");
 
-  const recruitersList = [
-    "Abacus Insights", "Mantra Softech India Pvt. Ltd.", "Accenture", "MAQ Software",
-    "Adani Group", "Marvell Semiconductors", "Adobe", "MathWorks",
-    "Airtel", "Meesho", "Aistrike", "Microsoft",
-    "Alphawave Semi", "Mihup", "Altair", "Mindstix Labs",
-    "Amazon", "Mitsogo Technologies", "Amber", "Msmex",
-    "Apmosys Technologies", "Multicoreware", "Atlas Consolidate Ltd", "MuSigma",
-    "Autodesk", "Nagarro Software", "Axtria", "National Instruments",
-    "Bajaj Broking", "Next Education", "Bajaj Finserv", "Nomura",
-    "Bosch Global Software", "NTT Data", "Capgemini", "NVIDIA",
-    "Citi Bank", "Onsurity", "Cognizant", "PayPal",
-    "Commvault", "Paytm Money", "Dell Technologies", "Reliance Jio",
-    "Deloitte", "Renault Nissan", "Flipkart", "ServiceNow",
-    "Google", "TCS", "IBM", "ZS Associates",
-    "Aza Fashions", "Behr-Hella Thermocontrols", "Centalon", "CGI", "Cimpress",
-    "ClearFeed", "Comscore", "Contlo", "CRED", "Data Insights", "Data-Axle", "Datawrkz",
-    "Eagle Eye Networks", "ElasticRun", "Electra EV", "Emerson", "Emoha", "FinIQ", "FIS Global", "Fischer Jordan",
-    "Futures First", "GE Digital", "GE Vernova", "Gocomet", "Gojek",
-    "Groww", "HashedIn", "Hiwipay", "HSBC", "HyperVerge",
-    "Incerff", "IndiaMART", "InfoEdge", "Infosys", "Intel India Ltd.", "Intuit", "ION Group", "JM Financials Ltd", "JTP International", "Juspay",
-    "Kiran Gems", "Kone", "KPIT", "L&T Infotech", "Lentra", "LinkedIn", "Loginext", "Lokal App", "Lubrizol", "Lumber",
-    "Mahindra & Mahindra", "Newt Global LLC", "NXP Semiconductors", "Nykaa", "O9 Solutions",
-    "Parallel Wireless", "Persistent Systems", "Philips", "Practo", "PubMatic", "Purplle", "Rakuten",
-    "Robert Bosch", "rtCamp", "Samsung R&D", "Samsung SDS", "Scaler", "Searce",
-    "Siemens", "Siemens DISW", "Slick", "Smallcase", "Snowflake", "SpringML", "Suzlon", "Syngenta", "Tarana Wireless", "Tata Technologies",
-    "Techolution", "Tenla Platform", "TESCO", "Texas Instruments", "Tracelink", "Triology Innovations", "UBS", "UKG", "UpGrad", "Valuefy", "Vassar Labs IT Solutions", "Voltas", "Walmart", "WebMD", "Yugabyte", "Zaggle", "Zenduty", "Zensar", "Zino", "ZoomRx",
-    "Zscaler", "Zuper"
+  const recruitersList = [    // Keep the Home carousel's complete logo-supported recruiter set here too.
+    "Google", "Microsoft", "Amazon", "Qualcomm", "NVIDIA", "Flipkart",
+    "Deloitte", "Accenture", "Samsung R&D", "Goldman Sachs", "Cisco", "Citi",
+    "Intel", "IBM", "Siemens", "TCS", "Infosys", "Wipro", "VMware", "Capgemini",
+    "Abacus Insights",
+    "Mantra Softech India Pvt. Ltd.",
+    "Accenture",
+    "MAQ Software",
+    "Adani Group",
+    "Marvell Semiconductors",
+    "Adobe",
+    "MathWorks",
+    "Airtel",
+    "Meesho",
+    "Aistrike",
+    "Microsoft",
+    "Alphawave Semi",
+    "Mihup",
+    "Altair",
+    "Mindstix Labs",
+    "Amazon",
+    "Mitsogo Technologies",
+    "Amber",
+    "Msmex",
+    "Apmosys Technologies",
+    "Multicoreware",
+    "Atlas Consolidate Ltd",
+    "MuSigma",
+    "Autodesk",
+    "Nagarro Software",
+    "Axtria",
+    "National Instruments",
+    "Bajaj Broking",
+    "Next Education",
+    "Bajaj Finserv",
+    "Nomura",
+    "Bosch Global Software",
+    "NTT Data",
+    "Capgemini",
+    "NVIDIA",
+    "Citi Bank",
+    "Onsurity",
+    "Cognizant",
+    "PayPal",
+    "Commvault",
+    "Paytm Money",
+    "Dell Technologies",
+    "Reliance Jio",
+    "Deloitte",
+    "Renault Nissan",
+    "Flipkart",
+    "ServiceNow",
+    "Google",
+    "TCS",
+    "IBM",
+    "ZS Associates",
+    "Aza Fashions",
+    "Behr-Hella Thermocontrols",
+    "Centalon",
+    "CGI",
+    "Cimpress",
+    "ClearFeed",
+    "Comscore",
+    "Contlo",
+    "CRED",
+    "Data Insights",
+    "Data-Axle",
+    "Datawrkz",
+    "Eagle Eye Networks",
+    "ElasticRun",
+    "Electra EV",
+    "Emerson",
+    "Emoha",
+    "FinIQ",
+    "FIS Global",
+    "Fischer Jordan",
+    "Futures First",
+    "GE Digital",
+    "GE Vernova",
+    "Gocomet",
+    "Gojek",
+    "Groww",
+    "HashedIn",
+    "Hiwipay",
+    "HSBC",
+    "HyperVerge",
+    "Incerff",
+    "IndiaMART",
+    "InfoEdge",
+    "Infosys",
+    "Intel India Ltd.",
+    "Intuit",
+    "ION Group",
+    "JM Financials Ltd",
+    "JTP International",
+    "Juspay",
+    "Kiran Gems",
+    "Kone",
+    "KPIT",
+    "L&T Infotech",
+    "Lentra",
+    "LinkedIn",
+    "Loginext",
+    "Lokal App",
+    "Lubrizol",
+    "Lumber",
+    "Mahindra & Mahindra",
+    "Newt Global LLC",
+    "NXP Semiconductors",
+    "Nykaa",
+    "O9 Solutions",
+    "Parallel Wireless",
+    "Persistent Systems",
+    "Philips",
+    "Practo",
+    "PubMatic",
+    "Purplle",
+    "Rakuten",
+    "Robert Bosch",
+    "rtCamp",
+    "Samsung R&D",
+    "Samsung SDS",
+    "Scaler",
+    "Searce",
+    "Siemens",
+    "Siemens DISW",
+    "Slick",
+    "Smallcase",
+    "Snowflake",
+    "SpringML",
+    "Suzlon",
+    "Syngenta",
+    "Tarana Wireless",
+    "Tata Technologies",
+    "Techolution",
+    "Tenla Platform",
+    "TESCO",
+    "Texas Instruments",
+    "Tracelink",
+    "Triology Innovations",
+    "UBS",
+    "UKG",
+    "UpGrad",
+    "Valuefy",
+    "Vassar Labs IT Solutions",
+    "Voltas",
+    "Walmart",
+    "WebMD",
+    "Yugabyte",
+    "Zaggle",
+    "Zenduty",
+    "Zensar",
+    "Zino",
+    "ZoomRx",
+    "Zscaler",
+    "Zuper",
   ];
 
   // Remove duplicates and sort alphabetically
-  const uniqueRecruiters = [...new Set(recruitersList)].sort((a, b) => a.localeCompare(b));
+  const uniqueRecruiters = [...new Set(recruitersList)].sort((a, b) =>
+    a.localeCompare(b),
+  );
 
   const filteredRecruiters = uniqueRecruiters.filter((recruiter) =>
-    recruiter.toLowerCase().includes(searchTerm.toLowerCase())
+    recruiter.toLowerCase().includes(searchTerm.toLowerCase()),
   );
 
   return (
-    <main className="min-h-screen"><PageHeader title="Our Esteemed Recruiters" subtitle="Our students are placed across leading global organizations spanning technology, finance, consulting, and core engineering." /><div className="bg-bg bg-grid-pattern min-h-screen py-12">
-      <section className="container mx-auto px-4">
-
-        {/* Search */}
-        <div className="max-w-xl mx-auto mb-12 relative">
-          <div className="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
-            <i className="fas fa-search text-gray-400"></i>
+    <main className="min-h-screen">
+      <PageHeader
+        title="Our Esteemed Recruiters"
+        subtitle="Our students are placed across leading global organizations spanning technology, finance, consulting, and core engineering."
+      />
+      <div className="bg-bg dark:bg-bg-dark bg-grid-pattern min-h-screen py-12 transition-colors duration-200">
+        <section className="container mx-auto px-4">
+          {/* Search */}
+          <div className="max-w-xl mx-auto mb-12 relative">
+            <div className="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
+              <i className="fas fa-search text-gray-400"></i>
+            </div>
+            <input
+              type="text"
+              className="w-full pl-12 pr-4 py-4 rounded-full border border-gray-300 dark:border-gray-700 shadow-sm focus:outline-none focus:ring-2 focus:ring-accent focus:border-transparent transition text-gray-900 dark:text-gray-100 placeholder:text-gray-500 bg-white dark:bg-surface-dark text-lg"
+              placeholder="Search recruiter..."
+              value={searchTerm}
+              onChange={(e) => setSearchTerm(e.target.value)}
+            />
           </div>
-          <input
-            type="text"
-            className="w-full pl-12 pr-4 py-4 rounded-full border border-gray-300 dark:border-gray-700 shadow-sm focus:outline-none focus:ring-2 focus:ring-accent focus:border-transparent transition text-gray-900 dark:text-gray-100 placeholder:text-gray-500 bg-white dark:bg-surface-dark text-lg"
-            placeholder="Search recruiter..."
-            value={searchTerm}
-            onChange={(e) => setSearchTerm(e.target.value)}
-          />
-        </div>
 
-        {/* Recruiters Grid */}
-        <div className="bg-white p-8 rounded-2xl shadow-sm border border-gray-200">
-          {filteredRecruiters.length > 0 ? (
-            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
-              {filteredRecruiters.map((recruiter) => (
-                <div 
-                  key={recruiter} 
-                  className="bg-surface border border-gray-200 p-4 rounded-lg text-text font-medium hover:bg-accent hover:border-accent hover:text-white transition-colors duration-300 flex items-center gap-3 min-h-[80px] shadow-sm hover:shadow"
-                >
-                  <RecruiterLogo name={recruiter} />
-                  <span className="text-left leading-tight">{recruiter}</span>
-                </div>
-              ))}
-            </div>
-          ) : (
-            <div className="text-center py-12 text-gray-500">
-              <i className="fas fa-box-open text-4xl mb-4 text-gray-400"></i>
-              <p className="text-lg">No recruiters found matching "{searchTerm}"</p>
-            </div>
-          )}
-        </div>
-
-      </section>
+          {/* Recruiters Grid */}
+          <div className="bg-white dark:bg-surface-dark p-8 rounded-2xl shadow-sm border border-gray-200 dark:border-gray-800">
+            {filteredRecruiters.length > 0 ? (
+              <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+                {filteredRecruiters.map((recruiter) => (
+                  <div
+                    key={recruiter}
+                    className="bg-surface dark:bg-gray-900 border border-gray-200 dark:border-gray-700 p-4 rounded-lg text-text dark:text-gray-100 font-medium hover:bg-accent hover:border-accent hover:text-white transition-colors duration-300 flex items-center gap-3 min-h-[80px] shadow-sm hover:shadow"
+                  >
+                    <RecruiterLogo name={recruiter} />
+                    <span className="text-left leading-tight">{recruiter}</span>
+                  </div>
+                ))}
+              </div>
+            ) : (
+              <div className="text-center py-12 text-gray-500">
+                <i className="fas fa-box-open text-4xl mb-4 text-gray-400"></i>
+                <p className="text-lg">
+                  No recruiters found matching "{searchTerm}"
+                </p>
+              </div>
+            )}
+          </div>
+        </section>
       </div>
     </main>
   );

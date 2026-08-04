@@ -1,5 +1,5 @@
-import React from 'react';
-import PageHeader from '../components/shared/PageHeader';
+import React from "react";
+import PageHeader from "../components/shared/PageHeader";
 import {
   Chart as ChartJS,
   CategoryScale,
@@ -8,9 +8,9 @@ import {
   Title,
   Tooltip,
   Legend,
-} from 'chart.js';
-import { Bar } from 'react-chartjs-2';
-import ChartDataLabels from 'chartjs-plugin-datalabels';
+} from "chart.js";
+import { Bar } from "react-chartjs-2";
+import ChartDataLabels from "chartjs-plugin-datalabels";
 
 ChartJS.register(
   CategoryScale,
@@ -19,23 +19,23 @@ ChartJS.register(
   Title,
   Tooltip,
   Legend,
-  ChartDataLabels
+  ChartDataLabels,
 );
 
 const CompensationChart = ({ highest, average }) => {
   const data = {
-    labels: ['BTech (CSE)', 'BTech (ECE)', 'MTech (CSE/ECE)'],
+    labels: ["BTech (CSE)", "BTech (ECE)", "MTech (CSE/ECE)"],
     datasets: [
       {
-        label: 'Highest CTC (LPA)',
+        label: "Highest CTC (LPA)",
         data: highest,
-        backgroundColor: 'rgba(37, 99, 235, 0.85)', // accent
+        backgroundColor: "rgba(37, 99, 235, 0.85)", // accent
         borderRadius: 6,
       },
       {
-        label: 'Average CTC (LPA)',
+        label: "Average CTC (LPA)",
         data: average,
-        backgroundColor: 'rgba(27, 58, 107, 0.85)', // primary
+        backgroundColor: "rgba(27, 58, 107, 0.85)", // primary
         borderRadius: 6,
       },
     ],
@@ -46,8 +46,8 @@ const CompensationChart = ({ highest, average }) => {
     maintainAspectRatio: false,
     plugins: {
       datalabels: {
-        anchor: 'end',
-        align: 'end',
+        anchor: "end",
+        align: "end",
         font: { size: 10 },
       },
     },
@@ -61,12 +61,12 @@ const CompensationChart = ({ highest, average }) => {
 
 const PlacementPercentChart = ({ dataPercent }) => {
   const data = {
-    labels: ['BTech (CSE)', 'BTech (ECE)', 'MTech (CSE/ECE)'],
+    labels: ["BTech (CSE)", "BTech (ECE)", "MTech (CSE/ECE)"],
     datasets: [
       {
-        label: 'Placement %',
+        label: "Placement %",
         data: dataPercent,
-        backgroundColor: 'rgba(220, 38, 38, 0.85)', // brand-red
+        backgroundColor: "rgba(220, 38, 38, 0.85)", // brand-red
         borderRadius: 6,
       },
     ],
@@ -78,9 +78,9 @@ const PlacementPercentChart = ({ dataPercent }) => {
     plugins: {
       legend: { display: false },
       datalabels: {
-        anchor: 'end',
-        align: 'end',
-        formatter: (v) => v + '%',
+        anchor: "end",
+        align: "end",
+        formatter: (v) => v + "%",
       },
     },
     scales: {
@@ -94,92 +94,136 @@ const PlacementPercentChart = ({ dataPercent }) => {
 const Placement = () => {
   const yearsData = [
     {
-      year: '2022-23',
+      year: "2022-23",
       compHighest: [53, 53, 18],
       compAverage: [19, 16, 18],
       placementPercent: [75.21, 68.75, 55],
     },
     {
-      year: '2023-24',
+      year: "2023-24",
       compHighest: [43, 21, 17.89],
       compAverage: [13.25, 11.84, 16.44],
       placementPercent: [75.14, 74.4, 88.9],
     },
     {
-      year: '2024-25',
+      year: "2024-25",
       compHighest: [45, 28.99, 22],
       compAverage: [17.12, 14.8, 18.5],
       placementPercent: [75.7, 45.09, 72.73],
     },
     {
-      year: '2025-26',
+      year: "2025-26",
       // Note: 2025-26 has 4 values in original HTML, adding a custom label or mapping them to first 3 for simplicity, but let's keep array length 4
       compHighest: [45, 45, 13, 5.6],
       compAverage: [18.38, 21.56, 9.4, 5.6],
-      placementPercent: [71.88, 57.58, 60.00, 33.33],
-      labels: ['BTech (CSE)', 'BTech (ECE)', 'MTech (CSE)', 'MTech (ECE)'], // Guessing the 4 labels based on data length
+      placementPercent: [71.88, 57.58, 60.0, 33.33],
+      labels: ["BTech (CSE)", "BTech (ECE)", "MTech (CSE)", "MTech (ECE)"], // Guessing the 4 labels based on data length
     },
   ];
 
   return (
-    <main className="min-h-screen"><PageHeader title="Placement Statistics" subtitle="Explore our comprehensive placement records over the years, showcasing the success of our students and the trust of our recruiters." /><div className="bg-bg bg-grid-pattern min-h-screen py-12">
-      <div className="container mx-auto px-4">
-
-        {yearsData.map((data, index) => (
-          <div key={index} className="bg-white rounded-xl shadow border border-gray-200 p-8 mb-10 hover:shadow-md transition">
-            <h2 className="text-2xl font-bold text-accent font-serif mb-8 border-b pb-4 text-center">Academic Year {data.year}</h2>
-            <div className="grid md:grid-cols-2 gap-10">
-              <div>
-                <h3 className="text-lg font-semibold text-center mb-4 text-text">Compensation (LPA)</h3>
-                <div className="h-80 w-full">
-                  <CompensationChart highest={data.compHighest} average={data.compAverage} />
+    <main className="min-h-screen">
+      <PageHeader
+        title="Placement Statistics"
+        subtitle="Explore our comprehensive placement records over the years, showcasing the success of our students and the trust of our recruiters."
+      />
+      <div className="bg-bg dark:bg-bg-dark bg-grid-pattern min-h-screen py-12 transition-colors duration-200">
+        <div className="container mx-auto px-4">
+          {yearsData.map((data, index) => (
+            <div
+              key={index}
+              className="bg-white dark:bg-surface-dark rounded-xl shadow border border-gray-200 dark:border-gray-800 p-8 mb-10 hover:shadow-md transition"
+            >
+              <h2 className="text-2xl font-bold text-accent dark:text-blue-300 font-serif mb-8 border-b border-gray-200 dark:border-gray-700 pb-4 text-center">
+                Academic Year {data.year}
+              </h2>
+              <div className="grid md:grid-cols-2 gap-10">
+                <div>
+                  <h3 className="text-lg font-semibold text-center mb-4 text-text dark:text-gray-200">
+                    Compensation (LPA)
+                  </h3>
+                  <div className="h-80 w-full">
+                    <CompensationChart
+                      highest={data.compHighest}
+                      average={data.compAverage}
+                    />
+                  </div>
                 </div>
-              </div>
-              <div>
-                <h3 className="text-lg font-semibold text-center mb-4 text-text">Placement Percentage</h3>
-                <div className="h-80 w-full">
-                  <PlacementPercentChart dataPercent={data.placementPercent} />
+                <div>
+                  <h3 className="text-lg font-semibold text-center mb-4 text-text dark:text-gray-200">
+                    Placement Percentage
+                  </h3>
+                  <div className="h-80 w-full">
+                    <PlacementPercentChart
+                      dataPercent={data.placementPercent}
+                    />
+                  </div>
                 </div>
               </div>
             </div>
-          </div>
-        ))}
+          ))}
 
-        {/* 2025-26 Highlights Section */}
-        <div className="bg-surface rounded-xl shadow border border-gray-200 p-8">
-          <h2 className="text-3xl font-bold font-serif text-center text-primary mb-6">2025-26 Placement Highlights</h2>
-          
-          <div className="bg-white p-6 rounded-lg mb-8 shadow-sm border border-gray-100">
-            <ul className="list-disc list-inside space-y-2 text-lg text-text font-medium">
-              <li>Around 75+ recruiters participated.</li>
-              <li>Hiring process is still ongoing.</li>
-            </ul>
-          </div>
+          {/* 2025-26 Highlights Section */}
+          <div className="bg-surface dark:bg-surface-dark rounded-xl shadow border border-gray-200 dark:border-gray-800 p-8">
+            <h2 className="text-3xl font-bold font-serif text-center text-primary dark:text-white mb-6">
+              2025-26 Placement Highlights
+            </h2>
 
-          <div>
-            <h3 className="text-xl font-bold text-accent font-serif mb-4 flex items-center gap-2">
-              <i className="fas fa-star text-brand-red"></i> Major Recruiters
-            </h3>
-            <div className="grid md:grid-cols-2 gap-4 bg-white p-6 rounded-lg shadow-sm border border-gray-100">
-              <ul className="space-y-3">
-                <li className="flex items-center gap-2"><i className="fas fa-check-circle text-accent"></i> Amazon</li>
-                <li className="flex items-center gap-2"><i className="fas fa-check-circle text-accent"></i> Walmart</li>
-                <li className="flex items-center gap-2"><i className="fas fa-check-circle text-accent"></i> Abacus Insights</li>
-                <li className="flex items-center gap-2"><i className="fas fa-check-circle text-accent"></i> ThoughtSpot</li>
-                <li className="flex items-center gap-2"><i className="fas fa-check-circle text-accent"></i> ION Group</li>
+            <div className="bg-white dark:bg-surface-dark p-6 rounded-lg mb-8 shadow-sm border border-gray-100 dark:border-gray-800">
+              <ul className="list-disc list-inside space-y-2 text-lg text-text dark:text-gray-200 font-medium">
+                <li>Around 75+ recruiters participated.</li>
+                <li>Hiring process is still ongoing.</li>
               </ul>
-              <ul className="space-y-3">
-                <li className="flex items-center gap-2"><i className="fas fa-check-circle text-accent"></i> Salesforce</li>
-                <li className="flex items-center gap-2"><i className="fas fa-check-circle text-accent"></i> Tarana Wireless</li>
-                <li className="flex items-center gap-2"><i className="fas fa-check-circle text-accent"></i> IBM</li>
-                <li className="flex items-center gap-2"><i className="fas fa-check-circle text-accent"></i> Deloitte</li>
-                <li className="flex items-center gap-2"><i className="fas fa-check-circle text-accent"></i> GoDaddy</li>
-              </ul>
+            </div>
+
+            <div>
+              <h3 className="text-xl font-bold text-accent dark:text-blue-300 font-serif mb-4 flex items-center gap-2">
+                <i className="fas fa-star text-brand-red"></i> Major Recruiters
+              </h3>
+              <div className="grid md:grid-cols-2 gap-4 bg-white dark:bg-surface-dark p-6 rounded-lg shadow-sm border border-gray-100 dark:border-gray-800">
+                <ul className="space-y-3">
+                  <li className="flex items-center gap-2">
+                    <i className="fas fa-check-circle text-accent"></i> Amazon
+                  </li>
+                  <li className="flex items-center gap-2">
+                    <i className="fas fa-check-circle text-accent"></i> Walmart
+                  </li>
+                  <li className="flex items-center gap-2">
+                    <i className="fas fa-check-circle text-accent"></i> Abacus
+                    Insights
+                  </li>
+                  <li className="flex items-center gap-2">
+                    <i className="fas fa-check-circle text-accent"></i>{" "}
+                    ThoughtSpot
+                  </li>
+                  <li className="flex items-center gap-2">
+                    <i className="fas fa-check-circle text-accent"></i> ION
+                    Group
+                  </li>
+                </ul>
+                <ul className="space-y-3">
+                  <li className="flex items-center gap-2">
+                    <i className="fas fa-check-circle text-accent"></i>{" "}
+                    Salesforce
+                  </li>
+                  <li className="flex items-center gap-2">
+                    <i className="fas fa-check-circle text-accent"></i> Tarana
+                    Wireless
+                  </li>
+                  <li className="flex items-center gap-2">
+                    <i className="fas fa-check-circle text-accent"></i> IBM
+                  </li>
+                  <li className="flex items-center gap-2">
+                    <i className="fas fa-check-circle text-accent"></i> Deloitte
+                  </li>
+                  <li className="flex items-center gap-2">
+                    <i className="fas fa-check-circle text-accent"></i> GoDaddy
+                  </li>
+                </ul>
+              </div>
             </div>
           </div>
         </div>
-
-      </div>
       </div>
     </main>
   );
