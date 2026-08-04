@@ -205,7 +205,7 @@ export default function Navbar() {
                     value={searchQuery}
                     onChange={(event) => setSearchQuery(event.target.value)}
                     placeholder="Search pages"
-                    className="w-36 px-2 py-1 text-xs rounded-l-md border-0"
+                    className="w-36 px-2 py-1 text-xs rounded-l-md border-0 bg-white text-gray-900 dark:bg-gray-100 dark:text-gray-900 placeholder:text-gray-500 focus:outline-none"
                     aria-label="Search pages"
                   />
                   <button
