@@ -94,16 +94,12 @@ const PlacementPercentChart = ({ dataPercent }) => {
 const Placement = () => {
   const yearsData = [
     {
-      year: "2022-23",
-      compHighest: [53, 53, 18],
-      compAverage: [19, 16, 18],
-      placementPercent: [75.21, 68.75, 55],
-    },
-    {
-      year: "2023-24",
-      compHighest: [43, 21, 17.89],
-      compAverage: [13.25, 11.84, 16.44],
-      placementPercent: [75.14, 74.4, 88.9],
+      year: "2025-26",
+      // Note: 2025-26 has 4 values in original HTML, adding a custom label or mapping them to first 3 for simplicity, but let's keep array length 4
+      compHighest: [45, 45, 13, 5.6],
+      compAverage: [18.38, 21.56, 9.4, 5.6],
+      placementPercent: [71.88, 57.58, 60.0, 33.33],
+      labels: ["BTech (CSE)", "BTech (ECE)", "MTech (CSE)", "MTech (ECE)"], // Guessing the 4 labels based on data length
     },
     {
       year: "2024-25",
@@ -112,13 +108,20 @@ const Placement = () => {
       placementPercent: [75.7, 45.09, 72.73],
     },
     {
-      year: "2025-26",
-      // Note: 2025-26 has 4 values in original HTML, adding a custom label or mapping them to first 3 for simplicity, but let's keep array length 4
-      compHighest: [45, 45, 13, 5.6],
-      compAverage: [18.38, 21.56, 9.4, 5.6],
-      placementPercent: [71.88, 57.58, 60.0, 33.33],
-      labels: ["BTech (CSE)", "BTech (ECE)", "MTech (CSE)", "MTech (ECE)"], // Guessing the 4 labels based on data length
+      year: "2023-24",
+      compHighest: [43, 21, 17.89],
+      compAverage: [13.25, 11.84, 16.44],
+      placementPercent: [75.14, 74.4, 88.9],
     },
+    {
+      year: "2022-23",
+      compHighest: [53, 53, 18],
+      compAverage: [19, 16, 18],
+      placementPercent: [75.21, 68.75, 55],
+    },
+    
+    
+    
   ];
 
   return (

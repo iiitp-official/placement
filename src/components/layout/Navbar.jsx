@@ -15,13 +15,9 @@ const links = [
   { name: "Our Recruiters", path: "/recruiters" },
   { name: "Contact", path: "/contact" },
 ];
-
+  
 const socialLinks = [
-  ["Facebook", "https://www.facebook.com/iiitpune/", FacebookIcon],
-  ["X / Twitter", "https://x.com/IIIT_Pune", TwitterIcon],
-  ["LinkedIn", "https://www.linkedin.com/company/cdcrciiitp/", LinkedinIcon],
-  ["Instagram", "https://www.instagram.com/iiit_pune_official/", InstagramIcon],
-  ["YouTube", "https://www.youtube.com/@IIIT_Pune_Official", YoutubeIcon],
+  ["LinkedIn", "https://www.linkedin.com/in/training-and-placement-cell-iiit-pune-1224b9296", LinkedinIcon],
 ];
 
 export default function Navbar() {
