@@ -60,8 +60,8 @@ const Contact = () => {
   return (
     <main className="min-h-screen">
       <PageHeader
-        title="CDCRC Committee"
-        subtitle="Career Development And Corporate Relation Centre"
+        title="Contact Us"
+        subtitle="IIIT Pune Placement Cell"
       />
       <div className="bg-bg dark:bg-bg-dark bg-grid-pattern min-h-screen py-12 transition-colors duration-200">
         <div className="container mx-auto px-4 max-w-4xl">

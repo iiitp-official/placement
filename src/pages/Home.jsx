@@ -33,8 +33,6 @@ const companies = [
   "Siemens",
   "TCS",
   "Infosys",
-  "Wipro",
-  "VMware",
   "Capgemini",
 ];
 const firstRow = companies.slice(0, 10),
@@ -108,15 +106,13 @@ export default function Home() {
               className="max-w-3xl text-left text-white"
             >
               <p className="text-blue-200 text-xs md:text-sm uppercase tracking-[.24em] font-semibold mb-4">
-                Career Development &amp; Corporate Relation Centre
+                IIIT Pune Placement Cell
               </p>
               <h1 className="text-4xl md:text-5xl xl:text-[3.4rem] font-bold font-serif leading-[1.08] tracking-normal mb-6">
-                Building bridges between talent and opportunity.
+                Launch Your Career with IIIT Pune Placements
               </h1>
               <p className="text-base md:text-lg text-blue-50/90 leading-relaxed max-w-2xl mb-8 text-left">
-                The IIIT Pune Placement Cell connects industry-ready students
-                with organisations shaping the future of technology, research,
-                and innovation.
+                Connecting bright minds with leading industries. Explore opportunities, success stories, and placement statistics at the Indian Institute of Information Technology, Pune.
               </p>
               <div className="flex flex-col sm:flex-row gap-3">
                 <Link
@@ -133,88 +129,6 @@ export default function Home() {
                 </Link>
               </div>
             </motion.div>
-            <motion.aside
-              initial={{ opacity: 0, x: 28 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.75, delay: 0.12 }}
-              className="w-full max-w-md lg:max-w-none justify-self-center lg:justify-self-end bg-white dark:bg-surface-dark rounded-2xl border border-white/30 dark:border-gray-700 shadow-2xl p-5 md:p-6"
-            >
-              <h2 className="text-xl md:text-2xl font-bold font-serif text-primary dark:text-white mb-4">
-                Placement Highlights
-              </h2>
-              <div className="grid grid-cols-2 gap-3">
-                <div className="rounded-xl bg-slate-100 dark:bg-gray-800 p-3 md:p-4">
-                  <TrendingUp
-                    className="text-accent dark:text-blue-300 mb-2"
-                    size={22}
-                  />
-                  <strong className="block text-xl md:text-2xl font-bold text-primary dark:text-white">
-                    95%
-                  </strong>
-                  <span className="text-sm text-gray-600 dark:text-gray-300">
-                    Placement Rate
-                  </span>
-                </div>
-                <div className="rounded-xl bg-slate-100 dark:bg-gray-800 p-3 md:p-4">
-                  <IndianRupee
-                    className="text-accent dark:text-blue-300 mb-2"
-                    size={22}
-                  />
-                  <strong className="block text-xl md:text-2xl font-bold text-primary dark:text-white">
-                    &#8377;54 LPA
-                  </strong>
-                  <span className="text-sm text-gray-600 dark:text-gray-300">
-                    Highest CTC
-                  </span>
-                </div>
-                <div className="rounded-xl bg-slate-100 dark:bg-gray-800 p-3 md:p-4">
-                  <Building2
-                    className="text-accent dark:text-blue-300 mb-2"
-                    size={22}
-                  />
-                  <strong className="block text-xl md:text-2xl font-bold text-primary dark:text-white">
-                    250+
-                  </strong>
-                  <span className="text-sm text-gray-600 dark:text-gray-300">
-                    Recruiters
-                  </span>
-                </div>
-                <div className="rounded-xl bg-slate-100 dark:bg-gray-800 p-3 md:p-4">
-                  <Briefcase
-                    className="text-accent dark:text-blue-300 mb-2"
-                    size={22}
-                  />
-                  <strong className="block text-xl md:text-2xl font-bold text-primary dark:text-white">
-                    1000+
-                  </strong>
-                  <span className="text-sm text-gray-600 dark:text-gray-300">
-                    Offers Made
-                  </span>
-                </div>
-              </div>
-              <div className="border-t border-gray-200 dark:border-gray-700 mt-5 pt-4">
-                <p className="text-xs font-semibold uppercase tracking-[.18em] text-gray-500 dark:text-gray-400 mb-3">
-                  Top Recruiters
-                </p>
-                <div className="flex flex-wrap gap-2">
-                  {[
-                    "Google",
-                    "Microsoft",
-                    "Amazon",
-                    "Adobe",
-                    "NVIDIA",
-                    "Oracle",
-                  ].map((company) => (
-                    <span
-                      key={company}
-                      className="rounded-full bg-blue-50 dark:bg-blue-900/30 text-primary dark:text-blue-200 px-3 py-1 text-xs font-semibold"
-                    >
-                      {company}
-                    </span>
-                  ))}
-                </div>
-              </div>
-            </motion.aside>
           </div>
         </div>
       </section>
@@ -222,20 +136,11 @@ export default function Home() {
         <AnimatedSection>
           <div className="flex items-end justify-between gap-4 mb-8">
             <div>
-              <p className="text-accent dark:text-accent-dark text-xs font-semibold uppercase tracking-widest mb-1">
-                Placement Cell
-              </p>
               <h2 className="text-3xl md:text-4xl font-bold font-serif text-primary dark:text-white">
                 A stronger start for every career
               </h2>
               <div className="w-16 h-1 bg-brand-red rounded-full mt-3" />
             </div>
-            <Link
-              to="/placement"
-              className="hidden sm:inline-flex items-center gap-1 text-sm font-semibold text-accent dark:text-accent-dark hover:underline"
-            >
-              View placement data <ArrowRight size={15} />
-            </Link>
           </div>
         </AnimatedSection>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
@@ -255,25 +160,11 @@ export default function Home() {
                 <div className="bg-surface dark:bg-gray-900/60 p-7 md:p-9 flex flex-col justify-center gap-3">
                   <div className="flex items-center justify-between border-b border-gray-200 dark:border-gray-700 pb-3">
                     <span className="text-sm text-gray-600 dark:text-gray-300">
-                      Highest package
-                    </span>
-                    <strong className="text-xl text-primary dark:text-white">
-                      &#8377;54 LPA
-                    </strong>
-                  </div>
-                  <div className="flex items-center justify-between border-b border-gray-200 dark:border-gray-700 pb-3">
-                    <span className="text-sm text-gray-600 dark:text-gray-300">
-                      Average package
+                      Placement achievements
                     </span>
                     <strong className="text-xl text-accent dark:text-blue-300">
-                      18 LPA
+                      Ongoing excellence
                     </strong>
-                  </div>
-                  <div className="flex items-center justify-between">
-                    <span className="text-sm text-gray-600 dark:text-gray-300">
-                      Placement rate
-                    </span>
-                    <strong className="text-xl text-brand-red">95%</strong>
                   </div>
                 </div>
               </div>
@@ -352,9 +243,6 @@ export default function Home() {
       <section className="order-3 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-14 md:py-20">
         <AnimatedSection>
           <div className="text-center max-w-3xl mx-auto mb-10">
-            <span className="inline-flex rounded-full bg-blue-50 dark:bg-blue-900/30 text-accent dark:text-blue-300 px-3 py-1 text-[11px] font-semibold">
-              Industry Connect
-            </span>
             <h2 className="text-3xl md:text-4xl font-bold font-serif text-primary dark:text-white mt-4">
               Strengthening Academia–Industry Collaboration
             </h2>
@@ -378,22 +266,16 @@ export default function Home() {
           </div>
         </AnimatedSection>
         <div className="max-w-4xl mx-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-          <AnimatedSection delay={0.05}>
-            <CollaborationCard icon={Building2} title="Corporate Training" />
-          </AnimatedSection>
           <AnimatedSection delay={0.1}>
             <CollaborationCard
               icon={GraduationCap}
               title="Industry Expert Sessions"
             />
           </AnimatedSection>
-          <AnimatedSection delay={0.15}>
-            <CollaborationCard icon={Lightbulb} title="Research & Innovation" />
-          </AnimatedSection>
           <AnimatedSection delay={0.2}>
             <CollaborationCard
               icon={Briefcase}
-              title="Internships & Live Projects"
+              title="Internships"
             />
           </AnimatedSection>
           <AnimatedSection delay={0.25}>
@@ -412,9 +294,6 @@ export default function Home() {
       <section className="order-2 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-14 md:py-20">
         <AnimatedSection>
           <div className="text-center max-w-3xl mx-auto mb-10">
-            <span className="inline-flex rounded-full bg-blue-50 dark:bg-blue-900/30 text-accent dark:text-blue-300 px-3 py-1 text-[11px] font-semibold">
-              For Recruiters
-            </span>
             <h2 className="text-3xl md:text-4xl font-bold font-serif text-primary dark:text-white mt-4">
               Why Recruit from IIIT Pune?
             </h2>

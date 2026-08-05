@@ -14,7 +14,7 @@ const Recruiters = () => {
   const recruitersList = [    // Keep the Home carousel's complete logo-supported recruiter set here too.
     "Google", "Microsoft", "Amazon", "Qualcomm", "NVIDIA", "Flipkart",
     "Deloitte", "Accenture", "Samsung R&D", "Goldman Sachs", "Cisco", "Citi",
-    "Intel", "IBM", "Siemens", "TCS", "Infosys", "Wipro", "VMware", "Capgemini",
+    "Intel", "IBM", "Siemens", "TCS", "Infosys",  "Capgemini",
     "Abacus Insights",
     "Mantra Softech India Pvt. Ltd.",
     "Accenture",

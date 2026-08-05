@@ -15,7 +15,7 @@ const links = [
   { name: "Our Recruiters", path: "/recruiters" },
   { name: "Contact", path: "/contact" },
 ];
-  
+
 const socialLinks = [
   ["LinkedIn", "https://www.linkedin.com/in/training-and-placement-cell-iiit-pune-1224b9296", LinkedinIcon],
 ];
