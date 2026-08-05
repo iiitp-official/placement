@@ -87,6 +87,8 @@ function AnimatedSection({ children, delay = 0, className = "" }) {
   );
 }
 export default function Home() {
+  const [isRecruiterExpanded, setIsRecruiterExpanded] = React.useState(false);
+
   return (
     <main className="w-full flex-grow flex flex-col">
       <section className="relative min-h-[540px] md:min-h-[580px] flex items-center overflow-hidden bg-primary dark:bg-surface-dark">
@@ -416,10 +418,37 @@ export default function Home() {
             <h2 className="text-3xl md:text-4xl font-bold font-serif text-primary dark:text-white mt-4">
               Why Recruit from IIIT Pune?
             </h2>
-            <p className="text-gray-600 dark:text-gray-300 text-sm md:text-base mt-3">
-              Our students combine academic excellence, innovation, and industry
-              exposure to deliver exceptional value from day one.
-            </p>
+            <div className="space-y-4 text-gray-600 dark:text-gray-300 text-sm md:text-base mt-3">
+              {isRecruiterExpanded ? (
+                <div className="space-y-4">
+                  <p className="leading-relaxed text-justify">
+                    At IIIT Pune, we are committed to nurturing technology professionals who combine strong academic foundations with innovation, adaptability, and a problem-solving mindset. Admitted through a rigorous national selection process such as JOSAA and CCMT, our students represent some of the brightest young minds in the country. The institute's curriculum is designed to build deep disciplinary knowledge while fostering analytical thinking, creativity, and the ability to address complex real-world challenges. Through a strong emphasis on experiential learning, project-based learning, and hands-on engagement with emerging technologies, students develop the technical competence and practical skills sought by leading organizations.
+                  </p>
+                  <p className="leading-relaxed text-justify">
+                    Beyond academics, IIIT Pune cultivates a culture of research, innovation, leadership, and professional excellence. Students actively participate in collaborative research projects, internships, technical competitions, hackathons, entrepreneurial initiatives, and industry-sponsored programmes that prepare them for dynamic professional environments. Regular interaction with industry experts and practitioners ensures exposure to current technologies, evolving business needs, and real-world applications. Coupled with strong communication skills, teamwork, ethical values, and a commitment to continuous learning, IIIT Pune graduates are equipped to contribute effectively from the very beginning and grow into future technology leaders, innovators, and change-makers.
+                  </p>
+                </div>
+              ) : (
+                <p
+                  className="leading-relaxed"
+                  style={{
+                    display: '-webkit-box',
+                    WebkitLineClamp: 2,
+                    WebkitBoxOrient: 'vertical',
+                    overflow: 'hidden',
+                  }}
+                >
+                  At IIIT Pune, we are committed to nurturing technology professionals who combine strong academic foundations with innovation, adaptability, and a problem-solving mindset. Admitted through a rigorous national selection process such as JOSAA and CCMT, our students represent some of the brightest young minds in the country. The institute's curriculum is designed to build deep disciplinary knowledge while fostering analytical thinking, creativity, and the ability to address complex real-world challenges. Through a strong emphasis on experiential learning, project-based learning, and hands-on engagement with emerging technologies, students develop the technical competence and practical skills sought by leading organizations.
+                </p>
+              )}
+              <button
+                type="button"
+                onClick={() => setIsRecruiterExpanded((prev) => !prev)}
+                className="inline-flex items-center text-sm font-semibold text-accent dark:text-blue-300 hover:text-accent-dark transition"
+              >
+                {isRecruiterExpanded ? 'View less' : 'View more'}
+              </button>
+            </div>
           </div>
         </AnimatedSection>
         <div className="max-w-5xl mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 auto-rows-fr gap-5">
