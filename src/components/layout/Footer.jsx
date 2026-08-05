@@ -10,8 +10,11 @@ import {
 } from "../shared/SocialIcons";
 
 const socialLinks = [
-  
-
+  ["Facebook", "https://www.facebook.com/iiitpune", FacebookIcon],
+  ["Twitter", "https://twitter.com/iiitpune", TwitterIcon],
+  ["LinkedIn", "https://www.linkedin.com/in/training-and-placement-cell-iiit-pune-1224b9296", LinkedinIcon],
+  ["Instagram", "https://www.instagram.com/iiitpune/", InstagramIcon],
+  ["YouTube", "https://www.youtube.com/@iiitpune", YoutubeIcon],
 ];
 const footerLinks = [
   ["Home", "/"],
