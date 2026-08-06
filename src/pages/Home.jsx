@@ -247,7 +247,7 @@ export default function Home() {
               Strengthening Academia–Industry Collaboration
             </h2>
             <p className="text-gray-600 dark:text-gray-300 text-sm md:text-base mt-3">
-              IIIT Pune collaborates with leading organizations to create
+              IIIT Pune collaborates with leading organizations to explore
               meaningful opportunities in research, internships, innovation, and
               campus placements.
             </p>
