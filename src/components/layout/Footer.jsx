@@ -21,6 +21,7 @@ const footerLinks = [
   ["Placement Statistics", "/placement"],
   ["Our Recruiters", "/recruiters"],
   ["Contact", "/contact"],
+  ["Alumni", "https://www.iiitp.ac.in/alumni", true],
   ["IIIT Pune Main Website", "https://iiitp.ac.in", true],
 ];
 
