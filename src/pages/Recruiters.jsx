@@ -1,10 +1,60 @@
 import React, { useState } from "react";
 import PageHeader from "../components/shared/PageHeader";
 import { CompanyLogo } from "../components/shared/CompanyLogo";
+
+const LOGO_EXTENSIONS = ["webp", "png", "svg", "jpg", "jpeg"];
+
+const normalizeRecruiterName = (name) =>
+  name
+    .toLowerCase()
+    .replace(/&/g, "and")
+    .replace(/[^a-z0-9]+/g, "-")
+    .replace(/^-+|-+$/g, "");
+
+const recruiterLogoAliases = {
+  "citi-bank": "citi",
+  "intel-india-ltd": "intel",
+  "lt-infotech": "ltinfotech",
+  "l-and-t-infotech": "ltinfotech",
+  "samsung-r-and-d": "samsung-rd",
+};
+
+const getLogoCandidates = (name) => {
+  const normalized = normalizeRecruiterName(name);
+  const alias = recruiterLogoAliases[normalized];
+  const slugs = alias ? [alias, normalized] : [normalized];
+
+  return slugs.flatMap((slug) =>
+    LOGO_EXTENSIONS.map((ext) => `/images/recruiters/${slug}.${ext}`),
+  );
+};
+
 function RecruiterLogo({ name }) {
+  const candidates = React.useMemo(() => getLogoCandidates(name), [name]);
+  const [candidateIndex, setCandidateIndex] = React.useState(0);
+
+  React.useEffect(() => {
+    setCandidateIndex(0);
+  }, [name]);
+
+  const logoSrc = candidates[candidateIndex];
+
   return (
     <div className="w-10 h-10 rounded-lg bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-700 flex items-center justify-center shrink-0 overflow-hidden" aria-hidden="true">
-      <CompanyLogo name={name} className="w-full h-full max-h-9 max-w-[34px] object-contain text-gray-800 dark:text-gray-200" />
+      {logoSrc ? (
+        <img
+          src={logoSrc}
+          alt={`${name} logo`}
+          className="w-full h-full object-contain p-1"
+          loading="lazy"
+          onError={() => setCandidateIndex((index) => index + 1)}
+        />
+      ) : (
+        <CompanyLogo
+          name={name}
+          className="w-full h-full max-h-9 max-w-[34px] object-contain text-gray-800 dark:text-gray-200"
+        />
+      )}
     </div>
   );
 }

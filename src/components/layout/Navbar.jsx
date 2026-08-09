@@ -14,6 +14,7 @@ const links = [
   { name: "Placement Statistics", path: "/placement" },
   { name: "Our Recruiters", path: "/recruiters" },
   { name: "Contact", path: "/contact" },
+  { name: "Main Website", href: "https://www.iiitp.ac.in", external: true },
 ];
 
 const socialLinks = [
@@ -51,7 +52,12 @@ export default function Navbar() {
     const match = links.find((link) =>
       link.name.toLowerCase().includes(searchQuery.trim().toLowerCase()),
     );
-    if (match) navigate(match.path);
+    if (!match) return;
+    if (match.external) {
+      window.open(match.href, "_blank", "noopener,noreferrer");
+      return;
+    }
+    navigate(match.path);
   };
 
   const changeLanguage = (language) => {
@@ -227,17 +233,30 @@ export default function Navbar() {
       >
         <div className="flex justify-center items-center py-2 gap-x-6">
           {links.map((link) => (
-            <NavLink
-              key={link.path}
-              to={link.path}
-              end={link.end}
-              className={({ isActive }) =>
-                `relative py-1 px-2.5 text-xs md:text-sm font-medium transition-colors duration-200 group flex items-center text-white hover:text-brand-red dark:text-gray-200 dark:hover:text-brand-red-dark ${isActive ? "text-brand-red dark:text-brand-red-dark" : ""}`
-              }
-            >
-              {link.name}
-              <span className="absolute bottom-0 left-0 w-full h-0.5 bg-brand-red dark:bg-brand-red-dark transform origin-left transition-transform duration-300 scale-x-0 group-hover:scale-x-100 group-[.text-brand-red]:scale-x-100" />
-            </NavLink>
+            link.external ? (
+              <a
+                key={link.href}
+                href={link.href}
+                target="_blank"
+                rel="noreferrer"
+                className="relative py-1 px-2.5 text-xs md:text-sm font-medium transition-colors duration-200 group flex items-center text-white hover:text-brand-red dark:text-gray-200 dark:hover:text-brand-red-dark"
+              >
+                {link.name}
+                <span className="absolute bottom-0 left-0 w-full h-0.5 bg-brand-red dark:bg-brand-red-dark transform origin-left transition-transform duration-300 scale-x-0 group-hover:scale-x-100" />
+              </a>
+            ) : (
+              <NavLink
+                key={link.path}
+                to={link.path}
+                end={link.end}
+                className={({ isActive }) =>
+                  `relative py-1 px-2.5 text-xs md:text-sm font-medium transition-colors duration-200 group flex items-center text-white hover:text-brand-red dark:text-gray-200 dark:hover:text-brand-red-dark ${isActive ? "text-brand-red dark:text-brand-red-dark" : ""}`
+                }
+              >
+                {link.name}
+                <span className="absolute bottom-0 left-0 w-full h-0.5 bg-brand-red dark:bg-brand-red-dark transform origin-left transition-transform duration-300 scale-x-0 group-hover:scale-x-100 group-[.text-brand-red]:scale-x-100" />
+              </NavLink>
+            )
           ))}
         </div>
       </nav>
@@ -273,16 +292,28 @@ export default function Navbar() {
               </button>
             </form>
             {links.map((link) => (
-              <NavLink
-                key={link.path}
-                to={link.path}
-                end={link.end}
-                className={({ isActive }) =>
-                  `block px-3 py-2 rounded-md text-base font-semibold text-white ${isActive ? "bg-brand-red" : "hover:bg-blue-800/50"}`
-                }
-              >
-                {link.name}
-              </NavLink>
+              link.external ? (
+                <a
+                  key={link.href}
+                  href={link.href}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="block px-3 py-2 rounded-md text-base font-semibold text-white hover:bg-blue-800/50"
+                >
+                  {link.name}
+                </a>
+              ) : (
+                <NavLink
+                  key={link.path}
+                  to={link.path}
+                  end={link.end}
+                  className={({ isActive }) =>
+                    `block px-3 py-2 rounded-md text-base font-semibold text-white ${isActive ? "bg-brand-red" : "hover:bg-blue-800/50"}`
+                  }
+                >
+                  {link.name}
+                </NavLink>
+              )
             ))}
           </div>
         </div>

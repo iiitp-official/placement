@@ -123,18 +123,25 @@ export default function Footer() {
         </div>
       </div>
       <div className="bg-black/40 py-4">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-sm text-gray-400 text-center">
-          © {new Date().getFullYear()} IIIT Pune. All rights reserved.
-          <div className="text-xs text-gray-500 mt-1">
-            Designed &amp; Developed by{" "}
-            <a
-              href="https://www.linkedin.com/in/hardik-jha-a1985b160"
-              target="_blank"
-              rel="noreferrer"
-              className="hover:text-brand-red transition-colors"
-            >
-              Hardik Jha
-            </a>
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-sm text-gray-400">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-2 items-center text-center md:text-left">
+            <div className="text-xs text-gray-500 md:justify-self-start">
+              Designed &amp; Developed by{" "}
+              <a
+                href="https://www.linkedin.com/in/hardik-jha-a1985b160"
+                target="_blank"
+                rel="noreferrer"
+                className="hover:text-brand-red transition-colors"
+              >
+                Hardik Jha
+              </a>
+            </div>
+            <div className="md:justify-self-center">
+              © 2026 IIIT Pune. All rights reserved.
+            </div>
+            <div className="md:justify-self-end md:text-right">
+              IIIT Pune Placement Cell
+            </div>
           </div>
         </div>
       </div>

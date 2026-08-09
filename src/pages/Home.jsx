@@ -1,19 +1,20 @@
 import React from "react";
-import { motion } from "framer-motion";
+import { motion, useInView } from "framer-motion";
 import { Link } from "react-router-dom";
 import { CompanyLogo } from "../components/shared/CompanyLogo";
 import {
   ArrowRight,
   Building2,
   GraduationCap,
+  IndianRupee,
   Lightbulb,
+  BarChart3,
   Briefcase,
   Handshake,
   FlaskConical,
   Laptop,
   Rocket,
   TrendingUp,
-  IndianRupee,
 } from "lucide-react";
 const companies = [
   "Google",
@@ -84,8 +85,96 @@ function AnimatedSection({ children, delay = 0, className = "" }) {
     </motion.div>
   );
 }
+
+function AnimatedCount({
+  value,
+  duration = 1200,
+  decimals = 0,
+  prefix = "",
+  suffix = "",
+}) {
+  const [displayValue, setDisplayValue] = React.useState(0);
+  const countRef = React.useRef(null);
+  const isInView = useInView(countRef, { once: true, margin: "-40px" });
+
+  React.useEffect(() => {
+    if (!isInView) return;
+
+    let frameId;
+    const start = performance.now();
+    const target = Number(value) || 0;
+
+    const animate = (now) => {
+      const progress = Math.min((now - start) / duration, 1);
+      const easedProgress = 1 - Math.pow(1 - progress, 3);
+      setDisplayValue(target * easedProgress);
+
+      if (progress < 1) {
+        frameId = requestAnimationFrame(animate);
+      }
+    };
+
+    frameId = requestAnimationFrame(animate);
+    return () => cancelAnimationFrame(frameId);
+  }, [value, duration, isInView]);
+
+  const formatted = displayValue.toLocaleString("en-IN", {
+    minimumFractionDigits: decimals,
+    maximumFractionDigits: decimals,
+  });
+
+  return (
+    <span ref={countRef}>
+      {prefix}
+      {formatted}
+      {suffix}
+    </span>
+  );
+}
+
 export default function Home() {
   const [isRecruiterExpanded, setIsRecruiterExpanded] = React.useState(false);
+
+  const keyHighlights = [
+    {
+      label: "Highest CTC",
+      value: 45,
+      prefix: "₹",
+      suffix: " LPA",
+      decimals: 0,
+      icon: IndianRupee,
+      iconClass:
+        "bg-emerald-100 text-emerald-600 dark:bg-emerald-900/30 dark:text-emerald-300",
+    },
+    {
+      label: "Average CTC",
+      value: 21.56,
+      prefix: "₹",
+      suffix: " LPA",
+      decimals: 2,
+      icon: BarChart3,
+      iconClass:
+        "bg-blue-100 text-accent dark:bg-blue-900/30 dark:text-blue-300",
+    },
+    {
+      label: "Total Offer",
+      value: 120,
+      suffix: "+",
+      decimals: 0,
+      icon: Briefcase,
+      iconClass:
+        "bg-violet-100 text-violet-600 dark:bg-violet-900/30 dark:text-violet-300",
+    },
+    {
+      label: "Placement Rate",
+      value: 71.88,
+      suffix: "%",
+      decimals: 2,
+      icon: TrendingUp,
+      iconClass:
+        "bg-orange-100 text-orange-600 dark:bg-orange-900/30 dark:text-orange-300",
+    },
+  ];
 
   return (
     <main className="w-full flex-grow flex flex-col">
@@ -143,36 +232,81 @@ export default function Home() {
             </div>
           </div>
         </AnimatedSection>
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-          <AnimatedSection delay={0.08} className="md:col-span-2">
-            <div className="h-full bg-white dark:bg-surface-dark rounded-2xl border border-gray-100 dark:border-gray-800 shadow-md overflow-hidden">
-              <div className="grid md:grid-cols-2 h-full">
-                <div className="p-7 md:p-9">
-                  <h3 className="text-2xl font-bold font-serif text-primary dark:text-white mb-4">
-                    Placement snapshots
-                  </h3>
-                  <p className="text-gray-600 dark:text-gray-300 leading-relaxed text-sm">
-                    From internships to full-time roles, our students carry a
-                    strong foundation of technical depth, curiosity, and
-                    professional readiness into every interaction with industry.
-                  </p>
+
+        <AnimatedSection delay={0.04}>
+          <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 mb-8">
+            {keyHighlights.map(({ label, value, icon: Icon, iconClass, prefix, suffix, decimals }) => (
+              <div
+                key={label}
+                className="rounded-xl border border-gray-200 dark:border-gray-800 bg-white/95 dark:bg-surface-dark/95 p-4 shadow-sm"
+              >
+                <div className="flex items-start gap-3">
+                  <div className={`w-8 h-8 rounded-lg flex items-center justify-center shrink-0 ${iconClass}`}>
+                    <Icon size={16} />
+                  </div>
+                  <div>
+                    <p className="text-xl font-bold font-serif text-primary dark:text-white leading-none">
+                      <AnimatedCount
+                        value={value}
+                        prefix={prefix}
+                        suffix={suffix}
+                        decimals={decimals}
+                      />
+                    </p>
+                    <p className="mt-1 text-[11px] text-gray-500 dark:text-gray-400">
+                      {label}
+                    </p>
+                  </div>
                 </div>
-                <div className="bg-surface dark:bg-gray-900/60 p-7 md:p-9 flex flex-col justify-center gap-3">
-                  <div className="flex items-center justify-between border-b border-gray-200 dark:border-gray-700 pb-3">
-                    <span className="text-sm text-gray-600 dark:text-gray-300">
-                      Placement achievements
-                    </span>
-                    <strong className="text-xl text-accent dark:text-blue-300">
-                      Ongoing excellence
-                    </strong>
+              </div>
+            ))}
+          </div>
+        </AnimatedSection>
+
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 items-stretch">
+          <AnimatedSection delay={0.08} className="md:col-span-2 h-full">
+            <div className="h-full bg-white dark:bg-surface-dark rounded-2xl border border-gray-100 dark:border-gray-800 shadow-md p-6 md:p-7 flex flex-col">
+              <h3 className="text-2xl font-bold font-serif text-primary dark:text-white mb-3">
+                Placement snapshots
+              </h3>
+              <p className="text-gray-600 dark:text-gray-300 leading-relaxed text-sm mb-6">
+                From internships to full-time roles, our students carry a
+                strong foundation of technical depth, curiosity, and
+                professional readiness into every interaction with industry.
+              </p>
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                <div className="bg-white dark:bg-surface-dark rounded-2xl border border-gray-100 dark:border-gray-800 shadow-md p-6 flex gap-4 items-center">
+                  <div className="w-11 h-11 rounded-xl bg-blue-50 dark:bg-blue-900/30 text-accent flex items-center justify-center">
+                    <Building2 size={23} />
+                  </div>
+                  <div>
+                    <p className="text-2xl font-bold font-serif text-primary dark:text-white">
+                      75+
+                    </p>
+                    <p className="text-xs text-gray-500 dark:text-gray-400">
+                      Recruiters Participated (2025-26)
+                    </p>
+                  </div>
+                </div>
+                <div className="bg-white dark:bg-surface-dark rounded-2xl border border-gray-100 dark:border-gray-800 shadow-md p-6 flex gap-4 items-center">
+                  <div className="w-11 h-11 rounded-xl bg-emerald-50 dark:bg-emerald-900/30 text-emerald-700 dark:text-emerald-300 flex items-center justify-center">
+                    <TrendingUp size={23} />
+                  </div>
+                  <div>
+                    <p className="text-2xl font-bold font-serif text-primary dark:text-white">
+                      Ongoing
+                    </p>
+                    <p className="text-xs text-gray-500 dark:text-gray-400">
+                      2025-26 Recruitment Process
+                    </p>
                   </div>
                 </div>
               </div>
             </div>
           </AnimatedSection>
-          <div className="grid grid-cols-1 gap-6">
-            <AnimatedSection delay={0.16}>
-              <div className="bg-white dark:bg-surface-dark rounded-2xl border border-gray-100 dark:border-gray-800 shadow-md p-6 flex gap-4 items-center">
+          <div className="grid grid-cols-1 auto-rows-fr gap-6">
+            <AnimatedSection delay={0.16} className="h-full">
+              <div className="h-full bg-white dark:bg-surface-dark rounded-2xl border border-gray-100 dark:border-gray-800 shadow-md p-6 flex gap-4 items-center">
                 <div className="w-11 h-11 rounded-xl bg-blue-50 dark:bg-blue-900/30 text-accent flex items-center justify-center">
                   <GraduationCap size={23} />
                 </div>
@@ -186,8 +320,8 @@ export default function Home() {
                 </div>
               </div>
             </AnimatedSection>
-            <AnimatedSection delay={0.24}>
-              <div className="bg-white dark:bg-surface-dark rounded-2xl border border-gray-100 dark:border-gray-800 shadow-md p-6 flex gap-4 items-center">
+            <AnimatedSection delay={0.24} className="h-full">
+              <div className="h-full bg-white dark:bg-surface-dark rounded-2xl border border-gray-100 dark:border-gray-800 shadow-md p-6 flex gap-4 items-center">
                 <div className="w-11 h-11 rounded-xl bg-red-50 dark:bg-red-900/30 text-brand-red flex items-center justify-center">
                   <Building2 size={23} />
                 </div>
@@ -281,14 +415,6 @@ export default function Home() {
           <AnimatedSection delay={0.25}>
             <CollaborationCard icon={Handshake} title="Campus Recruitment" />
           </AnimatedSection>
-        </div>
-        <div className="flex justify-center mt-9">
-          <Link
-            to="/recruiters"
-            className="inline-flex items-center gap-2 rounded-md bg-primary hover:bg-blue-800 text-white px-5 py-2.5 text-xs font-bold transition-colors"
-          >
-            View Our Recruiters <ArrowRight size={15} />
-          </Link>
         </div>
       </section>
       <section className="order-2 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-14 md:py-20">

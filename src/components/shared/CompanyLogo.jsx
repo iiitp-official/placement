@@ -171,10 +171,59 @@ export const CompanyLogo = ({ name, className = 'w-full h-full' }) => {
   // 16. TCS
   if (normalized.includes('tcs') || normalized.includes('tata')) {
     return (
-      <svg viewBox="0 0 100 30" className={className}>
-        <text x="0" y="21" fontSize="18" fontWeight="bold" fontFamily="sans-serif" fill="#1F70C1">TCS</text>
-        <path d="M50 8c12 2 24 10 32 10" stroke="#E9182C" strokeWidth="2.5" fill="none" strokeLinecap="round" />
-        <path d="M46 14c12 2 24 10 32 10" stroke="#1F70C1" strokeWidth="2.5" fill="none" strokeLinecap="round" />
+      <svg viewBox="0 0 360 170" className={className} aria-label="TCS logo">
+        <defs>
+          <linearGradient id="tcsWordmarkGradient" x1="18" y1="18" x2="120" y2="116" gradientUnits="userSpaceOnUse">
+            <stop offset="0%" stopColor="#FFC61E" />
+            <stop offset="35%" stopColor="#FF4D1F" />
+            <stop offset="70%" stopColor="#E92B79" />
+            <stop offset="100%" stopColor="#8E2DE2" />
+          </linearGradient>
+        </defs>
+        <text
+          x="8"
+          y="114"
+          fontSize="118"
+          fontWeight="900"
+          fontFamily="Arial Black, Arial, Helvetica, sans-serif"
+          fill="url(#tcsWordmarkGradient)"
+          letterSpacing="-8"
+        >
+          tcs
+        </text>
+        <text
+          x="175"
+          y="64"
+          fontSize="40"
+          fontWeight="900"
+          fontFamily="Arial Black, Arial, Helvetica, sans-serif"
+          fill="#1686D8"
+          letterSpacing="-1"
+        >
+          TATA
+        </text>
+        <text
+          x="175"
+          y="108"
+          fontSize="40"
+          fontWeight="900"
+          fontFamily="Arial Black, Arial, Helvetica, sans-serif"
+          fill="#1686D8"
+          letterSpacing="-1"
+        >
+          CONSULTANCY
+        </text>
+        <text
+          x="175"
+          y="152"
+          fontSize="40"
+          fontWeight="900"
+          fontFamily="Arial Black, Arial, Helvetica, sans-serif"
+          fill="#1686D8"
+          letterSpacing="-1"
+        >
+          SERVICES
+        </text>
       </svg>
     );
   }
