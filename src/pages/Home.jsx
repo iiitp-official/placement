@@ -4,6 +4,8 @@ import { Link } from "react-router-dom";
 import { CompanyLogo } from "../components/shared/CompanyLogo";
 import {
   ArrowRight,
+  ChevronLeft,
+  ChevronRight,
   Building2,
   GraduationCap,
   IndianRupee,
@@ -134,6 +136,33 @@ function AnimatedCount({
 
 export default function Home() {
   const [isRecruiterExpanded, setIsRecruiterExpanded] = React.useState(false);
+  const [currentSlide, setCurrentSlide] = React.useState(0);
+
+  const heroSlides = [
+    "/images/slide_1.png",
+    "/images/slide_5.png",
+    "/images/slide_4.png",
+    "/images/slide_3.png",
+    "/images/slide_2.png",  
+  ];
+
+  React.useEffect(() => {
+    const timer = setInterval(() => {
+      setCurrentSlide((prev) => (prev + 1) % heroSlides.length);
+    }, 5000);
+
+    return () => clearInterval(timer);
+  }, [heroSlides.length]);
+
+  const goToPreviousSlide = () => {
+    setCurrentSlide((prev) =>
+      prev === 0 ? heroSlides.length - 1 : prev - 1,
+    );
+  };
+
+  const goToNextSlide = () => {
+    setCurrentSlide((prev) => (prev + 1) % heroSlides.length);
+  };
 
   const keyHighlights = [
     {
@@ -178,46 +207,50 @@ export default function Home() {
 
   return (
     <main className="w-full flex-grow flex flex-col">
-      <section className="relative min-h-[540px] md:min-h-[580px] flex items-center overflow-hidden bg-primary dark:bg-surface-dark">
-        <img
-          src="/images/slide_1.jpeg"
-          alt="IIIT Pune campus"
-          className="absolute inset-0 w-full h-full object-cover opacity-90 dark:opacity-[90]"
-        />
-        <div className="absolute inset-0 bg-primary/75 dark:bg-surface-dark/80" />
-        <div className="absolute inset-0 bg-grid-pattern opacity-20" />
-        <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full py-20">
-          <div className="grid lg:grid-cols-[minmax(0,1fr)_400px] gap-8 xl:gap-12 items-center">
-            <motion.div
-              initial={{ opacity: 0, x: -28 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.75 }}
-              className="max-w-3xl text-left text-white"
-            >
-              <p className="text-blue-200 text-xs md:text-sm uppercase tracking-[.24em] font-semibold mb-4">
-                IIIT Pune Placement Cell
-              </p>
-              <h1 className="text-4xl md:text-5xl xl:text-[3.4rem] font-bold font-serif leading-[1.08] tracking-normal mb-6">
-                Launch Your Career with IIIT Pune Placements
-              </h1>
-              <p className="text-base md:text-lg text-blue-50/90 leading-relaxed max-w-2xl mb-8 text-left">
-                Connecting bright minds with leading industries. Explore opportunities, success stories, and placement statistics at the Indian Institute of Information Technology, Pune.
-              </p>
-              <div className="flex flex-col sm:flex-row gap-3">
-                <Link
-                  to="/placement"
-                  className="inline-flex items-center justify-center gap-2 bg-brand-red hover:bg-red-700 text-white px-6 py-3 rounded-md font-bold text-sm shadow-lg transition-all hover:-translate-y-0.5"
-                >
-                  Explore Placement Statistics <ArrowRight size={17} />
-                </Link>
-                <Link
-                  to="/contact"
-                  className="inline-flex items-center justify-center gap-2 border border-white/70 hover:bg-white hover:text-primary text-white px-6 py-3 rounded-md font-bold text-sm transition-all"
-                >
-                  Connect with the Cell
-                </Link>
-              </div>
-            </motion.div>
+      <section className="relative w-full max-w-[2560px] aspect-[16/7] max-h-screen mx-auto overflow-hidden bg-primary dark:bg-surface-dark">
+        {heroSlides.map((slide, index) => (
+          <img
+            key={slide}
+            src={slide}
+            alt={`Slide ${index + 1}`}
+            className={`absolute inset-0 w-full h-full object-contain bg-primary dark:bg-surface-dark transition-opacity duration-700 ${
+              index === currentSlide ? "opacity-100" : "opacity-0"
+            }`}
+          />
+        ))}
+
+        <button
+          type="button"
+          onClick={goToPreviousSlide}
+          aria-label="Previous slide"
+          className="absolute left-3 sm:left-6 top-1/2 -translate-y-1/2 z-20 w-10 h-10 rounded-full border border-white/40 bg-black/20 hover:bg-black/35 text-white flex items-center justify-center transition"
+        >
+          <ChevronLeft size={19} />
+        </button>
+        <button
+          type="button"
+          onClick={goToNextSlide}
+          aria-label="Next slide"
+          className="absolute right-3 sm:right-6 top-1/2 -translate-y-1/2 z-20 w-10 h-10 rounded-full border border-white/40 bg-black/20 hover:bg-black/35 text-white flex items-center justify-center transition"
+        >
+          <ChevronRight size={19} />
+        </button>
+
+        <div className="absolute bottom-6 left-1/2 -translate-x-1/2 z-20">
+          <div className="flex items-center gap-2">
+            {heroSlides.map((slide, index) => (
+              <button
+                key={slide}
+                type="button"
+                onClick={() => setCurrentSlide(index)}
+                aria-label={`Go to slide ${index + 1}`}
+                className={`h-2.5 rounded-full transition-all ${
+                  index === currentSlide
+                    ? "w-7 bg-white"
+                    : "w-2.5 bg-white/45 hover:bg-white/70"
+                }`}
+              />
+            ))}
           </div>
         </div>
       </section>
