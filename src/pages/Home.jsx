@@ -141,9 +141,10 @@ export default function Home() {
   const heroSlides = [
     "/images/slide_1.png",
     "/images/slide_5.png",
-    "/images/slide_4.png",
     "/images/slide_3.png",
-    "/images/slide_2.png",  
+    "/images/slide_4.png",
+    "/images/slide_6.png",
+    "/images/slide_2.png",
   ];
 
   React.useEffect(() => {
@@ -177,7 +178,7 @@ export default function Home() {
     },
     {
       label: "Average CTC",
-      value: 21.56,
+      value: 17.85,
       prefix: "₹",
       suffix: " LPA",
       decimals: 2,
@@ -186,8 +187,18 @@ export default function Home() {
         "bg-blue-100 text-accent dark:bg-blue-900/30 dark:text-blue-300",
     },
     {
-      label: "Total Offer",
-      value: 120,
+      label: "Median CTC",
+      value: 14.45,
+      prefix: "₹",
+      suffix: " LPA",
+      decimals: 2,
+      icon: Lightbulb,
+      iconClass:
+        "bg-amber-100 text-amber-600 dark:bg-amber-900/30 dark:text-amber-300",
+    },
+    {
+      label: "Total Offers",
+      value: 145,
       suffix: "+",
       decimals: 0,
       icon: Briefcase,
@@ -195,10 +206,10 @@ export default function Home() {
         "bg-violet-100 text-violet-600 dark:bg-violet-900/30 dark:text-violet-300",
     },
     {
-      label: "Placement Rate",
-      value: 71.88,
+      label: "Placement %",
+      value: 71,
       suffix: "%",
-      decimals: 2,
+      decimals: 0,
       icon: TrendingUp,
       iconClass:
         "bg-orange-100 text-orange-600 dark:bg-orange-900/30 dark:text-orange-300",
@@ -267,7 +278,7 @@ export default function Home() {
         </AnimatedSection>
 
         <AnimatedSection delay={0.04}>
-          <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 mb-8">
+          <div className="grid grid-cols-2 lg:grid-cols-5 gap-4 mb-8">
             {keyHighlights.map(({ label, value, icon: Icon, iconClass, prefix, suffix, decimals }) => (
               <div
                 key={label}
