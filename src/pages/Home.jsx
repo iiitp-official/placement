@@ -34,7 +34,6 @@ const companies = [
   "Intel",
   "IBM",
   "Siemens",
-  "TCS",
   "Infosys",
   "Capgemini",
 ];

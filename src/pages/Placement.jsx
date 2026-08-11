@@ -16,6 +16,7 @@ import {
   TrendingUp,
   Briefcase,
   BarChart3,
+  Lightbulb,
   ChevronDown,
   ChevronUp,
 } from "lucide-react";
@@ -301,7 +302,7 @@ const Placement = () => {
   const keyHighlights = [
     {
       label: "Highest CTC",
-      value: currentCycle.compHighest[0],
+      value: 45,
       prefix: "₹",
       suffix: " LPA",
       decimals: 0,
@@ -310,7 +311,7 @@ const Placement = () => {
     },
     {
       label: "Average CTC",
-      value: 21.56,
+      value: 17.85,
       prefix: "₹",
       suffix: " LPA",
       decimals: 2,
@@ -318,18 +319,27 @@ const Placement = () => {
       iconClass: "bg-blue-100 text-accent dark:bg-blue-900/30 dark:text-blue-300",
     },
     {
-      label: "Total Offer",
-      value: 120,
+      label: "Median CTC",
+      value: 14.45,
+      prefix: "₹",
+      suffix: " LPA",
+      decimals: 2,
+      icon: Lightbulb,
+      iconClass: "bg-amber-100 text-amber-600 dark:bg-amber-900/30 dark:text-amber-300",
+    },
+    {
+      label: "Total Offers",
+      value: 145,
       suffix: "+",
       decimals: 0,
       icon: Briefcase,
       iconClass: "bg-violet-100 text-violet-600 dark:bg-violet-900/30 dark:text-violet-300",
     },
     {
-      label: "Placement Rate",
-      value: currentCycle.placementPercent[0],
+      label: "Placement %",
+      value: 71,
       suffix: "%",
-      decimals: 2,
+      decimals: 0,
       icon: TrendingUp,
       iconClass: "bg-orange-100 text-orange-600 dark:bg-orange-900/30 dark:text-orange-300",
     },
@@ -347,7 +357,7 @@ const Placement = () => {
             <h2 className="text-center text-xl md:text-2xl font-bold font-serif text-primary dark:text-white mb-4">
               Key Highlights
             </h2>
-            <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
+            <div className="grid grid-cols-2 lg:grid-cols-5 gap-4">
               {keyHighlights.map(({ label, value, icon: Icon, iconClass, prefix, suffix, decimals }) => (
                 <div key={label} className="rounded-xl border border-gray-200 dark:border-gray-800 bg-white/95 dark:bg-surface-dark/95 p-4 shadow-sm">
                   <div className="flex items-start gap-3">
