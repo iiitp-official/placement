@@ -267,9 +267,9 @@ const Placement = () => {
   const yearsData = [
     {
       year: "2025-26",
-      compHighest: [45, 45, 13, 5.6],
-      compAverage: [18.38, 21.56, 9.4, 5.6],
-      placementPercent: [71.88, 57.58, 60.0, 33.33],
+      compHighest: [45, 45, 17.22, 5.6],
+      compAverage: [18.57, 17.23, 12.1, 5.6],
+      placementPercent: [73.55, 70, 57.14, 34],
       labels: ["BTech (CSE)", "BTech (ECE)", "MTech (CSE)", "MTech (ECE)"],
     },
     {
@@ -423,11 +423,11 @@ const Placement = () => {
                         </div>
                         <div className="rounded-lg border border-cyan-200/70 dark:border-cyan-900/50 bg-cyan-50/60 dark:bg-cyan-900/20 p-3">
                           <p className="text-[10px] uppercase tracking-wide text-gray-500 dark:text-gray-400">Average CTC</p>
-                          <p className="text-lg font-bold text-primary dark:text-white mt-1">₹{data.compAverage[0]} LPA</p>
+                          <p className="text-lg font-bold text-primary dark:text-white mt-1">₹{data.year === "2025-26" ? "17.85" : data.compAverage[0]} LPA</p>
                         </div>
                         <div className="rounded-lg border border-orange-200/70 dark:border-orange-900/50 bg-orange-50/60 dark:bg-orange-900/20 p-3">
                           <p className="text-[10px] uppercase tracking-wide text-gray-500 dark:text-gray-400">Placement %</p>
-                          <p className="text-lg font-bold text-primary dark:text-white mt-1">{data.placementPercent[0]}%</p>
+                          <p className="text-lg font-bold text-primary dark:text-white mt-1">{data.year === "2025-26" ? "71" : data.placementPercent[0]}%</p>
                         </div>
                         <div className="rounded-lg border border-violet-200/70 dark:border-violet-900/50 bg-violet-50/60 dark:bg-violet-900/20 p-3">
                           <p className="text-[10px] uppercase tracking-wide text-gray-500 dark:text-gray-400">Programs</p>
