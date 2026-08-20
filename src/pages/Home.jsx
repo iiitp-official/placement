@@ -139,6 +139,7 @@ export default function Home() {
 
   const heroSlides = [
     "/images/slide_1.png",
+    "/images/slide_7.png",
     "/images/slide_5.png",
     "/images/slide_3.png",
     "/images/slide_4.png",
